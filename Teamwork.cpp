@@ -49,7 +49,7 @@ void SumArray() {
 	}
 	int suma = ID[0] + ID[1] + ID[2];
 	int final = (ID[1] + 1) * 30;
-	if (suma < final) {
+	if (suma <= final) {
 		cout << "Fallo en la suma." << endl;
 		delete[] ID; // se elimina el vector para ahorrar memoria. Se usa cuando utilizas 'new'.
 		exit(0);
