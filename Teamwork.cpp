@@ -11,7 +11,7 @@ void ControlUppercaseCountPattern()
 	int mayus = 0;
 
 	cin >> cadena1;
-	for (int i = 0; cadena[i] != '\0'; i++)
+	for (int i = 0; cadena1[i] != '\0'; i++)
 	{
 		if (cadena1[i] >= 'A' && cadena1[i] <= 'Z')
 			mayus++;
