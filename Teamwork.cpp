@@ -1,9 +1,13 @@
+/**
+* @author Esther María ?, Javier Cedeño y Diego Fernández?
+* @version 1.3
+*/
 #include <iostream>
 #include <cstdlib> // para usar exit()
 using namespace std;
 
 
-extern "C" bool IsValidAssembly(int a, int b, int c);
+extern "C" bool IsValidAssembly(int a, int b, int c); // función externa en Assembly
 void ControlUppercaseCountPattern()
 {
 	char cadena1[20];
@@ -54,7 +58,6 @@ void SumArray() {
 		delete[] ID; // se elimina el vector para ahorrar memoria. Se usa cuando utilizas 'new'.
 		exit(0);
 	}
-	delete[] ID; // caso donde sí se cumple, se sigue borrando para ahorrar memoria después de haber hecho el procedimiento
 }
 
 void ControlBitParity(unsigned char* ID) {
@@ -67,7 +70,7 @@ void ControlBitParity(unsigned char* ID) {
 	int bitA = (num1 >> ID[3]) & 0x00000001;
 	int bitB = (num2 >> ID[4]) & 0x00000001;
 
-	if (bitA != bitB){
+	if (bitA != bitB) {
 		cout << "Entrada incorrecta." << endl;
 		delete[] ID;
 		exit(0);
@@ -92,11 +95,16 @@ void ControlBitParity(unsigned char* ID) {
 		delete[] ID;
 		exit(0);
 	}
-	delete[] ID;
 }
 
 int main()
 {
-
+	unsigned char* ID = new unsigned char[5]; // se reserva memoria para el vector ID que usará varias funciones
+	ControlUppercaseCountPattern();
+	ControlBitParity(ID);
+	AsmAccess();
+	SumArray();
+	cout << "Acceso permitido" << endl;
+	delete[] ID; // se borra al final de memoria el vector creado con 'new'
 	return 0;
 }
