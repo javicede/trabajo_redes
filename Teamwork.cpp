@@ -1,11 +1,14 @@
 /**
 * @author Esther María ?, Javier Cedeño y Diego Fernández?
-* @version 1.3
+* @version 1.4.1
+* @note ID utilizado: 312522
 */
 #include <iostream>
 #include <cstdlib> // para usar exit()
+#include <cstring> // para strcmp()
 using namespace std;
 
+const int ID[] = { 3,1,2,5,2,2 };
 
 extern "C" bool IsValidAssembly(int a, int b, int c); // función externa en Assembly
 void ControlUppercaseCountPattern()
@@ -20,7 +23,7 @@ void ControlUppercaseCountPattern()
 		if (cadena1[i] >= 'A' && cadena1[i] <= 'Z')
 			mayus++;
 	}
-	if (mayus != 6) {
+	if (mayus != ( ID[3] + 1 )) {
 		cout << "Intruso detectado.";
 		exit(0);
 	}
@@ -43,24 +46,25 @@ void AsmAccess() {
 
 void SumArray() {
 	int tamano = 3;
-	unsigned char* ID = new unsigned char[tamano]; // nos aseguramos que cada valor esté entre 0 y 255
+	unsigned char* v_user = new unsigned char[tamano]; // nos aseguramos que cada valor esté entre 0 y 255
 	// Lee los valores de la terminal y se colocan en el vector
 	cout << "Introduzca los tres elementos del vector (0-255): " << endl;
 	for (int i = 0; i < tamano; i++) {
 		int temp; // aseguramos que guarde el valor entero
 		cin >> temp;
-		ID[i] = (unsigned char)temp; // se guarda dicho valor dentro de los 8  bits
+		v_user[i] = (unsigned char)temp; // se guarda dicho valor dentro de los 8  bits
 	}
-	int suma = ID[0] + ID[1] + ID[2];
+	int suma = v_user[0] + v_user[1] + v_user[2];
 	int final = (ID[1] + 1) * 30;
 	if (suma <= final) {
 		cout << "Fallo en la suma." << endl;
-		delete[] ID; // se elimina el vector para ahorrar memoria. Se usa cuando utilizas 'new'.
+		delete[] v_user; // se elimina el vector creado, optimiza memoria
 		exit(0);
 	}
+	delete[] v_user; // se elimina el vector creado, se elimina el espacio en memoria
 }
 
-void ControlBitParity(unsigned char* ID) {
+void ControlBitParity() {
 	unsigned int num1;
 	unsigned int num2;
 	cout << "Introduzca los dos números enteros sin signo: ";
@@ -72,7 +76,6 @@ void ControlBitParity(unsigned char* ID) {
 
 	if (bitA != bitB) {
 		cout << "Entrada incorrecta." << endl;
-		delete[] ID;
 		exit(0);
 	}
 	int contador_unos1 = 0;
@@ -92,19 +95,16 @@ void ControlBitParity(unsigned char* ID) {
 	// suma de ambos contadores, condición de que NO se cumpla
 	if ((contador_unos1 + contador_unos2) % 2 != 0) {
 		cout << "Fallo" << endl;
-		delete[] ID;
 		exit(0);
 	}
 }
 
 int main()
 {
-	unsigned char* ID = new unsigned char[5]; // se reserva memoria para el vector ID que usará varias funciones
 	ControlUppercaseCountPattern();
-	ControlBitParity(ID);
+	ControlBitParity();
 	AsmAccess();
 	SumArray();
 	cout << "Acceso permitido" << endl;
-	delete[] ID; // se borra al final de memoria el vector creado con 'new'
 	return 0;
 }
