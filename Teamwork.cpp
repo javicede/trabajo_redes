@@ -1,7 +1,7 @@
 /**
 * @author Esther María Fernández García, Javier Cedeño Rodríguez y Diego Rivero Fernández
-* @version 1.4.3
-* @note ID utilizado: 312522
+* @version 1.4.3.1
+* @note ID utilizado (UO): 312522
 */
 #include <iostream>
 #include <cstdlib> // para usar exit()
