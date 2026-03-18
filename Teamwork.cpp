@@ -1,6 +1,6 @@
 /**
 * @author Esther María Fernández García, Javier Cedeño Rodríguez y Diego Rivero Fernández
-* @version 1.4.1
+* @version 1.4.3
 * @note ID utilizado: 312522
 */
 #include <iostream>
@@ -46,11 +46,10 @@ void AsmAccess() {
 
 void SumArray() {
 	int tamano = 3;
-	unsigned char* v_user = new unsigned char[tamano]; // nos aseguramos que cada valor esté entre 0 y 255
-	// Lee los valores de la terminal y se colocan en el vector
+	unsigned char* v_user = new unsigned char[tamano]; // nos aseguramos que cada valor esté entre 0 y 255, por eso usamos 'unsigned'
 	cout << "Introduzca los tres elementos del vector (0-255): " << endl;
 	for (int i = 0; i < tamano; i++) {
-		int temp; // aseguramos que guarde el valor entero
+		int temp;
 		cin >> temp;
 		v_user[i] = (unsigned char)temp; // se guarda dicho valor dentro de los 8  bits
 	}
@@ -70,7 +69,7 @@ void ControlBitParity() {
 	cout << "Introduzca los dos números enteros sin signo: ";
 	cin >> num1;
 	cin >> num2;
-	// Aislamos los bits que se han usado en las posiciones guardadas de ID[3] y ID[4]
+	// Aislamos los bits que se han usado en las posiciones guardadas de ID[3] y ID[4], enseñado en clase
 	int bitA = (num1 >> ID[3]) & 0x00000001;
 	int bitB = (num2 >> ID[4]) & 0x00000001;
 
@@ -92,7 +91,6 @@ void ControlBitParity() {
 			contador_unos2++;
 		}
 	}
-	// suma de ambos contadores, condición de que NO se cumpla
 	if ((contador_unos1 + contador_unos2) % 2 != 0) {
 		cout << "Fallo" << endl;
 		exit(0);
