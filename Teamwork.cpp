@@ -1,5 +1,5 @@
 /**
-* @author Esther María ?, Javier Cedeño y Diego Fernández?
+* @author Esther María Fernández García, Javier Cedeño Rodríguez y Diego Rivero Fernández
 * @version 1.4.1
 * @note ID utilizado: 312522
 */
